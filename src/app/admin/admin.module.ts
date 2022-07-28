@@ -8,6 +8,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
 import { OrdersPageComponent } from './orders-page/orders-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../shared/auth.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ]),
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   exports: [],
+  providers: [AuthService],
 })
 export class AdminModule {}
