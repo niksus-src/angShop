@@ -34,18 +34,21 @@ export class LoginPageComponent implements OnInit {
     const user: User = {
       email: this.form.value.email,
       password: this.form.value.pass,
+      returnSecureToken: true,
     };
 
-    this.auth.login(user).subscribe(
-      (res) => {
+    this.auth.login(user).subscribe({
+      next: (res) => {
         this.form.reset();
         this.router.navigate(['/admin', 'dashboard']);
         this.submited = false;
+        console.log(res);
       },
-      () => {
+      error: (err) => {
         this.submited = false;
-      }
-    );
+        console.log(err);
+      },
+    });
   }
 
   get pass() {
