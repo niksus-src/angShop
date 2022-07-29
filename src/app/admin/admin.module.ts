@@ -10,6 +10,9 @@ import { OrdersPageComponent } from './orders-page/orders-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../shared/auth.service';
+import { AuthGuard } from '../shared/auth.guard';
+import { QuillModule } from 'ngx-quill';
+import { ProductService } from '../shared/product.service';
 
 @NgModule({
   declarations: [
@@ -29,18 +32,35 @@ import { AuthService } from '../shared/auth.service';
         children: [
           { path: '', redirectTo: '/admin/login', pathMatch: 'full' },
           { path: 'login', component: LoginPageComponent },
-          { path: 'dashboard', component: DashboardComponent },
-          { path: 'add', component: AddPageComponent },
-          { path: 'orders', component: OrdersPageComponent },
-          { path: 'product/:id/edit', component: EditPageComponent },
+          {
+            path: 'dashboard',
+            component: DashboardComponent,
+            canActivate: [AuthGuard],
+          },
+          {
+            path: 'add',
+            component: AddPageComponent,
+            canActivate: [AuthGuard],
+          },
+          {
+            path: 'orders',
+            component: OrdersPageComponent,
+            canActivate: [AuthGuard],
+          },
+          {
+            path: 'product/:id/edit',
+            component: EditPageComponent,
+            canActivate: [AuthGuard],
+          },
         ],
       },
     ]),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    QuillModule.forRoot(),
   ],
   exports: [],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard, ProductService],
 })
 export class AdminModule {}

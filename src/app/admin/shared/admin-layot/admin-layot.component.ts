@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-layot.component.scss'],
 })
 export class AdminLayotComponent implements OnInit {
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(public auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
