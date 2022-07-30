@@ -13,6 +13,16 @@ export type Product = {
   date: string;
 };
 
+export type ProductFromBD= {
+  info: string;
+  photo: string;
+  price: string;
+  title: string;
+  type: string;
+  date: string;
+  id: string;
+};
+
 export type FbRes = {
   name: string;
 };

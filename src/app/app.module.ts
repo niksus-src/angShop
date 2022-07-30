@@ -8,8 +8,10 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { ProductPageComponent } from './product-page/product-page.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { QuillModule } from 'ngx-quill';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AuthInterseptor } from './shared/auth.interseptor';
+import {ProductService} from "./shared/product.service";
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -18,15 +20,17 @@ import { AuthInterseptor } from './shared/auth.interseptor';
     MainPageComponent,
     ProductPageComponent,
     CartPageComponent,
+    ProductComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, QuillModule],
+  bootstrap: [AppComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       multi: true,
       useClass: AuthInterseptor,
     },
+    ProductService
   ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}
