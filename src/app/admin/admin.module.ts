@@ -13,6 +13,8 @@ import { AuthService } from '../shared/auth.service';
 import { AuthGuard } from '../shared/auth.guard';
 import { QuillModule } from 'ngx-quill';
 import { ProductService } from '../shared/product.service';
+import { AppModule } from "../app.module";
+import { SearchPipe } from "../shared/search.pipe";
 
 @NgModule({
   declarations: [
@@ -22,45 +24,46 @@ import { ProductService } from '../shared/product.service';
     DashboardComponent,
     EditPageComponent,
     OrdersPageComponent,
+    SearchPipe
   ],
   imports: [
     CommonModule,
     RouterModule.forChild([
       {
-        path: '',
+        path: "",
         component: AdminLayotComponent,
         children: [
-          { path: '', redirectTo: '/admin/login', pathMatch: 'full' },
-          { path: 'login', component: LoginPageComponent },
+          { path: "", redirectTo: "/admin/login", pathMatch: "full" },
+          { path: "login", component: LoginPageComponent },
           {
-            path: 'dashboard',
+            path: "dashboard",
             component: DashboardComponent,
-            canActivate: [AuthGuard],
+            canActivate: [AuthGuard]
           },
           {
-            path: 'add',
+            path: "add",
             component: AddPageComponent,
-            canActivate: [AuthGuard],
+            canActivate: [AuthGuard]
           },
           {
-            path: 'orders',
+            path: "orders",
             component: OrdersPageComponent,
-            canActivate: [AuthGuard],
+            canActivate: [AuthGuard]
           },
           {
-            path: 'product/:id/edit',
+            path: "product/:id/edit",
             component: EditPageComponent,
-            canActivate: [AuthGuard],
-          },
-        ],
-      },
+            canActivate: [AuthGuard]
+          }
+        ]
+      }
     ]),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     QuillModule.forRoot(),
   ],
-  exports: [],
   providers: [AuthService, AuthGuard, ProductService],
+  exports: [RouterModule]
 })
 export class AdminModule {}

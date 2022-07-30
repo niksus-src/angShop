@@ -11,6 +11,8 @@ import {map, Observable} from 'rxjs';
 export class ProductService {
   constructor(private http: HttpClient) {}
 
+  type = 'Phone'
+
   create(product: Product) {
     return this.http
       .post<FbRes>(`${environment.fbDbUrl}/products.json`, product)
@@ -54,5 +56,9 @@ export class ProductService {
 
   update(product: ProductFromBD) {
     return this.http.patch(`${environment.fbDbUrl}/products/${product.id}.json`, product)
+  }
+
+  setType(type: string) {
+    this.type = type
   }
 }

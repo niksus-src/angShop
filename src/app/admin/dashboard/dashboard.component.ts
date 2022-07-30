@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   products: ProductFromBD[] = []
   pSub: Subscription = new Subscription()
   rSub: Subscription = new Subscription()
+  productName = ''
 
   constructor(private productServ: ProductService) { }
 

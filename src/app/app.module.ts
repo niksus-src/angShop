@@ -12,6 +12,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AuthInterseptor } from './shared/auth.interseptor';
 import {ProductService} from "./shared/product.service";
 import { ProductComponent } from './product/product.component';
+import { SearchPipe } from './shared/search.pipe';
+import { SortingPipe } from './shared/sorting.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { ProductComponent } from './product/product.component';
     ProductPageComponent,
     CartPageComponent,
     ProductComponent,
+    SortingPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, QuillModule],
   bootstrap: [AppComponent],
@@ -28,9 +31,9 @@ import { ProductComponent } from './product/product.component';
     {
       provide: HTTP_INTERCEPTORS,
       multi: true,
-      useClass: AuthInterseptor,
+      useClass: AuthInterseptor
     },
     ProductService
-  ],
+  ]
 })
 export class AppModule {}
